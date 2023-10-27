@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CarBuilder</title>
+</head>
+<body>
+<p>
+    public interface CarBuilder {
+
+    public void buildBodyStyle();
+    public void buildPower();
+    public void buildEngine();
+    public void buildBreaks();
+    public void buildSeats();
+    public void buildWindows();
+    public void buildFuelType();
+    public Car getCar();
+    }
+    <br>
+    public class CarDirector {
+
+    private CarBuilder carBuilder;
+
+    public CarDirector(CarBuilder carBuilder){
+    this.carBuilder = carBuilder;
+    }
+
+    public void build(){
+    carBuilder.buildBodyStyle();
+    carBuilder.buildPower();
+    carBuilder.buildEngine();
+    carBuilder.buildBreaks();
+    carBuilder.buildSeats();
+    carBuilder.buildWindows();
+    carBuilder.buildFuelType();
+    }
+    }
+    <br>
+    public class Car {
+
+    private String bodyStyle;
+    private String power;
+    private String engine;
+    private String breaks;
+    private String seats;
+    private String windows;
+    private String fuelType;
+    private String carType;
+
+    public Car (String carType){
+    this.carType = carType;
+    }
+
+    public String getBodyStyle() {
+    return bodyStyle;
+    }
+    }
+    <br>
+    public class SedanCarBuilder implements CarBuilder{
+
+    private final Car car = new Car("SEDAN");
+
+    @Override
+    public void buildBodyStyle() {
+    car.setBodyStyle("External dimensions: overall length (inches): 202.9, " +
+    "overall width (inches): 76.2, overall height (inches): 60.7, wheelbase (inches): 112.9," +
+    " front track (inches): 65.3, rear track (inches): 65.5 and curb to curb turning circle (feet): 39.5");
+    }
+    @Override
+    public Car getCar(){
+    return car;
+    }
+    }
+    <br>
+    public class SportsCarBuilder implements CarBuilder{
+
+    private final Car car = new Car("SPORTS");
+
+    @Override
+    public void buildBodyStyle() {
+    car.setBodyStyle("External dimensions: overall length (inches): 192.3," +
+    " overall width (inches): 75.5, overall height (inches): 54.2, wheelbase (inches): 112.3," +
+    " front track (inches): 63.7, rear track (inches): 64.1 and curb to curb turning circle (feet): 37.7");
+    }
+    @Override
+    public Car getCar(){
+    return car;
+    }
+    }
+    <br>
+    public class TestBuilderPattern {
+
+    public static void main(String[] args) {
+    CarBuilder carBuilder = new SedanCarBuilder();
+    CarDirector director = new CarDirector(carBuilder);
+    director.build();
+    Car car = carBuilder.getCar();
+    System.out.println(car);
+
+    carBuilder = new SportsCarBuilder();
+    director = new CarDirector(carBuilder);
+    director.build();
+    car = carBuilder.getCar();
+    System.out.println(car);
+    }
+
+    }
+    <br>
+</p>
+
+</body>
+</html>

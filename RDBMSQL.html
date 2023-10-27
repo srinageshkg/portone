@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RDBMS and SQL</title>
+</head>
+<body>
+<p>
+  ACID
+  <ul>
+  <li>Atomicity:transaction is treated as a single, indivisible unit of work
+    Atomicity is often achieved using techniques like transaction logs and write-ahead logs</li>
+  <li>Consistency: guarantees that a transaction brings the database from one consistent state to another consistent state  </li>
+  <li>Isolation:prevents interference or data corruption when multiple transactions are executed concurrently  </li>
+  <li>Durability: guarantees that once a transaction is committed, its changes to the database are permanent and will survive any subsequent system failures  </li>
+</ul>
+
+First Normal Form:: single-valued attribute
+Second Normal Form: no partial dependency: it has no non-prime attribute that depends on any proper subset of any candidate key of the table
+Third Normal Form: no transitive dependency: all non-prime attributes are determined only by the candidate keys of the relation and not by any other non-prime attribute
+Boyce-Codd Normal Form: every functional dependency, Left-Hand-Side is super key.
+</p>
+@Test
+public void convertToUpperCaseWithTryCatchTest{
+try {
+exceptionDemo.convertToUpperCase("");
+fail("It should throw IllegalArgumentException");
+} catch (IllegalArgumentException e) {
+Assertions.assertThat(e)
+.isInstanceOf(IllegalArgumentException.class)
+.hasMessage("Input empty, cannot convert to upper case!!");
+}
+}
+</body>
+</html>

@@ -1,0 +1,357 @@
+package com.dcp.portone.service;
+
+import com.dcp.portone.model.Book;
+import lombok.*;
+
+import java.util.*;
+/*
+public class Singleton {
+
+    private Integer someQuantity = 1000;
+    private Singleton(){}
+    private static Singleton object = null;
+    public static Singleton getInstance(){
+        if (object == null)
+            object = new Singleton();
+        return object;
+    }
+    public Integer getSomeQuantity(Integer qty){
+        Integer returnValue = 0;
+
+        if (qty <= someQuantity) {
+            someQuantity -= qty;
+            returnValue = someQuantity;
+        } else {
+            returnValue = 0;
+        }
+        return returnValue;
+    }
+    public void addSomeQuantity(Integer qty){
+        someQuantity += qty;
+    }
+
+}
+
+/*class InterviewBitThreadExampleOne extends Thread{
+    public void run(){
+        System.out.println("Thread runs...");
+    }
+    public static void main(String args[]){
+        InterviewBitThreadExampleOne ib = new InterviewBitThreadExampleOne();
+        ib.start();
+
+                HashSet<Integer> hashSet = new HashSet<>();
+                hashSet.add(10);
+                hashSet.add(12);
+                hashSet.add(10);
+
+                Hashtable<Integer, String> hashtable = new Hashtable<>();
+                hashtable.put(1,"Nagesh");
+                hashtable.put(2,"Kavitha");
+                hashtable.put(3,"Akhil");
+                hashtable.put(1,"Nagesh");
+
+                hashSet.stream().forEach(System.out::println);
+
+                TreeSet<String> treeSet = new TreeSet<>();
+                treeSet.add("Nagesh");
+                treeSet.add("Kavitha");
+                treeSet.add("Akhil");
+
+                // treeSet.stream().forEach( s -> { System.out.println(s) + " ,";});
+                System.out.println(treeSet.stream().collect(Collectors.joining(", XXXX ")));
+
+                System.out.println(hashtable.keySet());
+                System.out.println(hashtable.keys());
+                System.out.println(hashtable.elements());
+                System.out.println(hashtable.values());
+                System.out.println(hashtable.entrySet());
+                System.out.println(hashtable.get(2));
+
+}*/
+
+/*class InterviewBitThreadExample implements Runnable{
+    public void run(){
+        System.out.println("Thread runs...");
+    }
+    public static void main(String args[]){
+        Thread ib = new Thread(new InterviewBitThreadExample());
+        ib.start();
+    }
+}*/
+
+    class Main {
+        public static int testExceptionDivide(int a, int b) throws ArithmeticException {
+            if (a == 0 || b == 0)
+                throw new ArithmeticException();
+            return a / b;
+        }
+
+        public static void main(String args[]) {
+            try {
+                testExceptionDivide(10, 0);
+            } catch (ArithmeticException e) {
+                //Handle the exception
+            }
+        }
+    }
+
+    // transient key word will not allow serialization
+// Association
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    @Getter
+    @Setter
+    class Employee {
+        private String name;
+    }
+
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    @Getter
+    @Setter
+    class Bank {
+        private String name;
+        private Set<Employee> employees;
+
+        Bank(String name) {
+            this.name = name;
+        }
+
+    }
+
+    class ImplAssociation {
+
+        // public static void main(String[] args() {}
+        Bank bank = new Bank("WF");
+
+        Set<Employee> bankEmployees = new HashSet<>();
+        Employee emp1 = new Employee("Paul");
+        Employee emp2 = new Employee("James");
+        Employee emp3 = new Employee("Akhil");
+
+        // two separate classes Bank and Employee are associated through their Objects. Bank can have many employees, So it is a one-to-many relationship.
+        // COMPOSITION filled diamond, AGGREGATION Diamond, Association LINE
+        // Composition is a restricted form of Aggregation in which two entities are highly dependent on each other.  part-of relation ship
+        // Aggregation is special form of Association it represents Has-A , unidirectional, both entries can survive individually
+        College<-
+        Student College <-Teacher
+
+        @AllArgsConstructor
+
+        class Student {
+            name,id,deptModel;
+        }
+
+        @AllArgsConstructor
+        class Department {
+            name,List<Student>
+        }
+
+        @AllArgsConstructor
+        class Institute {
+            name,
+            List<Department> deptModels
+        }
+
+        public int getAllStudentsInInstitute() {
+            int noOfStudents = 0;
+            List<Student> students;
+
+            for (Department deptModel : deptModels) {
+                students = deptModel.getStudents();
+                for (Student student : students) {
+                    noOfStudents++;
+                }
+            }
+            return noOfStudents;
+        }
+
+        // implementation in Main
+        Student s1, s2, s3, s4;
+        Department d1 = new Department("CSE", cscstudnets);
+        Department d12 = new Department("ECE", ecestudnets);
+
+        List<Department> departments = new ArrayList<>();
+    departments.add.asList(d1,d12)
+        Institute inst = new Institute("BITS", deptModels);
+    inst.getAllStudentsInInstitute();
+        // we make an Institute class that has a reference to Object or no. of Objects (i.e. List of Objects) of the Department class. That means Institute class is associated with Department class through its Object(s).
+        // It represents a Has-A relationship
+
+        // Composition Book is Part-of Library. Strong association,
+        // If Library gets destroyed then All books within that particular library will be destroyed.
+        calss Book
+
+        {
+            title, author
+            Book(title, author) {
+        }
+            ;
+        }
+
+        class Library {
+            private final List<Book> books;
+
+            Library(List<Book> books) {
+                this, books = books
+            }
+
+            ;
+
+        }
+
+    }
+
+    // Composition Strong
+    class Building {
+        Room createAnonymousRoom() {
+            return new Room() {
+                @Override
+                void doInRoom() {
+                }
+            };
+        }
+
+
+        Room createInlineRoom() {
+            class InlineRoom implements Room {
+                @Override
+                void doInRoom() {
+                }
+            }
+            return new InlineRoom();
+        }
+
+        Room createLambdaRoom() {
+            return () -> {
+            };
+        }
+
+        interface Room {
+            void doInRoom();
+        }
+    }
+
+    class Building {
+        List<Room> rooms;
+
+        class Room {
+        }
+    }
+
+    class Building {
+        String address;
+
+        class Room {
+            String getBuildingAddress() {
+                return Building.this.address;
+            }
+        }
+    }
+
+    // Aggregation  Aggregation is also a “has-a” relationship
+// The member can be any type of class, except a non-static inner class
+    class Wheel {
+    }
+
+    class Car {
+        List<Wheel> wheels;
+    }
+
+    class Car {
+        List<Wheel> wheels;
+
+        static class Wheel {
+        }
+    }
+
+    // Association
+    class Child {
+    }
+
+    class Mother {
+        List<Child> children;
+    }
+
+    class Child {
+        Mother mother;
+    }
+
+    class Mother {
+        List<Child> children;
+    }
+
+    class University {
+        List<Department> department;
+    }
+
+    class Department {
+        List<Professor> professors;
+    }
+
+    class Professor {
+        List<Department> department;
+        List<Professor> friends;
+    }
+
+    // Composition has-a Strong all die - filled diamond  private final and constructor and a method to display all its objects
+// Aggreagation has-a Weak child - empty diamond - can live even if parent die just a member and add through owner constructor  employee address
+// Association is not a has-a and weakest relation of all -- No constructor passing
+    class School {
+        public String name;
+        private final List<Classroom> classroomList;
+
+        School(name, classroomList) {
+            this.name = name;
+            this.classroomList = classroomList;
+        }
+
+        public List<Classroom> getAllClassrooms() {
+            return classroomList;
+        }
+    }
+
+
+    Structural patterns:
+
+    Adapter
+            Bridge
+    Filter
+            Composite
+    Decorator
+            Facade
+    Flyweight
+            Proxy
+    Behavioral patterns:
+
+    Interpreter
+    Template method/pattern
+    Chain of
+    responsibility
+    Command pattern
+    Iterator pattern
+    Strategy pattern
+    Visitor pattern
+    J2EE patterns:
+
+    MVC Pattern
+    Data Access
+    Object pattern
+    Front controller
+    pattern
+    Intercepting filter
+    pattern
+    Transfer object
+    pattern
+    Creational patterns:
+
+    Factory method/Template
+    Abstract Factory
+    Builder
+            Prototype
+    Singleton
+
+        */

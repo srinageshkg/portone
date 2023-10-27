@@ -1,0 +1,54 @@
+1. Imperative Programming Paradigm:  HOW to execute program logic and defines control flow as statements
+    a) Procedural Programming Paradigm - steps a program must take to reach the desired state
+    b) Object-Oriented Programming or OOP - organizes programs as objects (data and behaviour)
+    c) Parallel Programming - breaks a task into subtasks and focuses on executing them simultaneously
+2. Declarative Programming Paradigm: WHAT to execute and defines program logic
+    a) Logical Programming Paradigm - set of sentences expressing facts and rules
+    b) Functional Programming Paradigm - programs are constructed by applying and composing functions
+    c) Database Programming Paradigm - manage data and information structured as fields, records, and files
+OOAD - programming paradigm that is defined using objects - Objects can be considered as real-world instances of entities like class, that have some characteristics and behaviors, promote code reuse, bottom-up approach,
+Characteristics are also known as data, attributes, or properties
+Behaviours are also known as the functions, procedures or methods
+OOP Helps in readability, understandability, and maintainability of the software
+Main features of OOPs:
+Encapsulation (Data hiding and Binding):- is the process of binding data members and methods of a program together to do a specific job, without revealing unnecessary details.
+    Access Specifiers public, private, protected, default
+    A class may encapsulate data as private fields and expose public methods (getters and setters) to access or modify that data while enforcing validation rules.
+Inheritance: an entity inherits some characteristics and behaviors of some other entity and makes them their own
+    Single A->B; Multilevel A->B->C; Hierarchical A->B, A->C, A->D; (Multilevel A->C, B->C; Hybrid A->B->D, A->C->D)
+    create a subclass that inherits attributes and methods from a superclass.
+Polymorphism: (Many Shapes) - data, method, or object behaves differently under different circumstances or contexts
+    a) Compile-time polymorphism (Static or Early Binding):
+    b) Run time polymorphism (Dynamic or Late Binding): - can't be decided by the compiler
+    c) Polymorphism allows objects of different classes to be treated as objects of a common superclass.
+    Polymorphism is often achieved through method overriding and method overloading.
+Data Abstraction:
+The constructors (Default, Parameterized, Copy) serve the special purpose of initializing the objects
+overloading -> compile-time polymorphism; Overriding -> runtime - dynamic polymorphism
+Method overloading is made possible by introducing different methods in the same class consisting of the same name with different parameters
+Method overriding is the concept in which two methods having the same method signature are present in two different classes in which an inheritance relationship is present.
+
+data abstraction -> achieved through abstract methods or abstract classes
+Interface and Abstract Class -> contain only the methods declaration.
+Abstract Class 1) can have abstract and implemented methods
+    2) AC can have instance variables with different access modifiers
+    3) common base class with some default behavior for its subclasses
+    4) shared codebase and minimize duplication among subclasses
+    5) can have constructors and these are invoked when an instance of subclass is created
+Interfaces 1) can have only abstract methods and constants (public static final fields - implicitly static and final)
+    2) a class can implement multiple interfaces
+    3) they define contracts or APIs the classes must adhere to. To achieve multilple inheritance
+    4) good when want to define a common set of methods that multiple unrelated classes should implement
+Exception -> try, catch, finally special event, which is raised during the execution of a program at runtime - such exceptions should be handled in the program beforehand and prevent the execution from stopping
+    5) Can't have constructor - can't be instantiated directly
+    6) Java8 introduced default methods and static methods in Interfaces
+
+SOLID principles: set of five design principles that promote building maintainable and scalable software by encouraging good architectural and design practices
+Each principle addresses a specific aspect of software design and encourages a more flexible and robust codebase
+1. Single Responsibility Principle (SRP): A class should have only one reason to change, meaning it should have only one responsibility- single, well-defined purpose.
+2. Open-Closed Principle (OCP): Software entities (classes, modules, functions, etc.) should be open for extension but closed for modification.
+3. Liskov Substitution Principle (LSP): A Behavioral Notion of Subtyping.  Subtypes must be substitutable for their base types without altering the correctness of the program. interfaces or abstract classes
+4. Interface Segregation Principle (ISP): Clients should not be forced to depend on interfaces they don't use. defining interfaces with a minimal set of methods that are relevant to specific clients.
+5. Dependency Inversion Principle (DIP): High-level modules should not depend on low-level modules. Both should depend on abstractions.
+        Abstractions should not depend on details; details should depend on abstractions. promotes the use of interfaces and "dependency injection" to decouple high-level modules from low-level modules
+

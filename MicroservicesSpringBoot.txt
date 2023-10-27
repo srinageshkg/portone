@@ -1,0 +1,67 @@
+git remote add sfgRepo https://github.com/springframeworkguru/spring5webapp.git
+
+
+@Componenet class is automatically discovered by Spring  - @Service, @Repository @Controller all are deried from @Component
+
+Beans and Dependency Injection
+A bean is an object that lives inside the Spring Container.
+As your @SpringBootApplication performs a @ComponentScan, a bean is created from classes marked with @Component.
+@Controller, @Service and @Repository derive from @Component.
+@Configuration: marks a class as a source for bean definitions.
+@Bean: method-level annotation for bean definitions.
+@Autowired injects the bean where it's needed.
+
+MVC
+1) User makes a get request
+2) Controller maps get request to request handler (handler method has direct access to Model through its function parameters- SpringBoot) & creates POJO
+
+
+Spring creates an object out of each @Component class that it finds
+A spring container called Application Context stores and manages the object
+Bean: an object that lives inside the Spring Container is called a Bean
+then @Autowired and inject the bean into the class that needs it
+
+@Autowired injects @Service(Business logic) bean into one of @Controller field and so @Repository (Data Access) into @Service
+
+IOC (Inversion of Control) and DI (Dependency Injection -> inject @Beans defined in @Configuration classes into other Sprimng-managed classes, such as COntrollers, @Services) is a design pattern to provide loose coupling. It removes the dependency from the program
+
+@REST endpoint (Controllers) - @Service (Managed by Spring Container), inject the service into controller through @Autowired annotation - DAOs (Repositories)
+@Service, @Repository, @Controller, @Component @Configuration class - @Bean (methods), @Import
+@ComponentScan  ning: automatically detects and registers beans in Spring Context
+
+@SpringBootApplication (meta annotation combines) @Configuration, @ComponentScan, @EnableAutoConfiguration
+@Controller to represent the class is a Spring MVC Controller, Controllers handle HTTP requests and handle responses
+@RestController used for building RESTful web services. Combines @Controller and @ResponseBody - to return data to be serialized as HTTP Response
+@Value from properties files, @Qualifier @Profile - conditional bean registration
+@RequestMapping map HTTP request to Controller methods. Defines URL path and HTTP method
+@PathVariable - bind method parameter to a URI template variable when processing HTTP request
+@RequestBody method parameter should be bound to the body of the HTTP request in POST or PUT
+@ResponseBody method return value should be serialized directly to the HTTP response body, often used in combination with @RestController
+
+
+
+
+Spring DATA JPA:
+@Entity - corresponds to a table
+@Table, @Column details of DB entity that an @Entity maps to
+@Id primary key attribute of an Entity class
+@GeneratedValue Auto generate sequence (AUTO, IDENTITY, SEQUENCE)
+@OneToOne @JoinColumn
+@ManyToMany @JoinTable
+@Query, @NamesQuery, @NamedQueries - to define JPQL queries
+
+Spring Boot Advantages: embedded HTTP Server, annotation configuration makes it easier to understand and faster devlopmemnt
+minimum configuration, increased productivity
+Key Components:  auto-configuration, CLI, Starter POMs, Actuators
+Spring Boot over Spring: Starter POM, version mgmt, Auto Configuration, Component Scan, Embedded Server, inMemory DB, Actuators
+@SpringBootApplication public class MyApplication {  public static void main(String[] args) { SpringApplication.run(MyApplication.class);  // other statements  }
+Spring Initializer: Spring Initializer is a web application that helps you to create an initial spring boot project structure and provides a maven or gradle file to build your code.
+Spring Boot CLI is a command-line interface that allows you to create a spring-based java application using Groovy
+@RestController:  combination of @Controller and @ResponseBody. converts the response to JSON or XML data will be written into the response body not template
+@Controller Map of the model object to view or template and make it human readable
+@RestController simply returns the object and object data is directly written in HTTP response as JSON or XML
+Client - controller - Service - Repository (Dependency injection) - Model (JPA Spring Data) - Database
+
+@RequestMapping can be used with GET, POST, PUT, and many other request methods using the method attribute on the annotation
+@getMapping is only an extension of RequestMapping which helps you to improve on clarity on request
+dependency Injection: The process of injecting dependent bean objects into target bean objects is called dependency injection 1) setter injection, 2) Constructor Injection, 3) Field Injection

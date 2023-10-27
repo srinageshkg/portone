@@ -1,0 +1,103 @@
+Basics Of Microservices  - sculptural type subtype of service-oriented architecture (SOA) - Highly Cohesive, loosely coupled
+architectural trend used to comprise several of the small services
+design elements in the microservices include flexible or adaptable, scalable, loose coupling, composable, corporate, componenised, distributed, decentralized
+Advantages: 1) can be formed and dispatched autonomously in any application Clustering - Horizontal scaling 2) Language agnostic
+Characteristics: 1) Detach the services in the system appl - loose coupling - switched and upgraded - bounded context (Domain Driver Design)
+Features - Continuous development CI/CD pipeline, Component Based, Loosly coupled, Scalability
+Monitor Microservices: 1)  Spring Boot Controller - monitor statistics 2) Opensource tools: Prometheos(Pull based surveillance tool), Kibana, Graphana (Dashboard instruments for data visualization) AppDynamics, Dynatrace and New Relics
+collection of little self-contained services that fit into a corporation profession
+Components if MS: Clients, Identity Provides (Configure user info and provide serivce tokens), Static Content (Store system functionality for longer period), API Gateway.
+Management (endpoints), CDNs (Content Delivery Network - distributed network - respective Data Centers), Service Discovery, Remote Servers
+Spring Cloud: Integrating with external systems in microservices (Versioned and Distributed Configuration, Discovery of Service registration, Service to Service calls, Routing, Circuit breakers and load balancing, Cluster state and  leadership election, Global locks and Distributed messaging
+DB: Ephemeral, Transactional, Transitional and Operational data
+PACT Testing tool for contracts - generates a photocopy against which the test is performed on the basis of it. Store the output in a JSON file.
+Security Testing: Code scanning, Flexible, Adaptability
+Heavy investment, Architecture setup, Excessive planing for operational overhead, Autonomous staff selection
+Blue/Green deployment
+bounded context (Domain Driver Design) DDD deals with product design predicated on domain models. A model serves as an UbiquitousLanguage to enable interaction among software engineers and field professionals
+Cross functional testing: Non-functional requirements - no-of concurrent users, max users, expected latency,
+Correlation IDs/Transit ID: single value conncted to requests and messages that refers to a specific transaction or an event chain - JMS
+Convey's Law: Conway’s law shows that the design of every system is impacted substantially by the communications system of the organisation.
+Client certificates: The certification of customer verification is used fr a SSL handshake to authenticate customer
+---------------------------
+
+Developing a single application as a suite of looslt coupled small services, each running in its own process and communicating with lightweight mechanisms
+MQTT    SOAP    GraphQL     Webhook     REST    WebSocket
+(well defined APIs -  often an HTTP (Synchronous -
+Request/Response communication HTTP and REST -> extends gRPC, GraphQL)  or gRPC API -
+    REST(Stateless, Uniform Interface, Cachable, Client-Server, Layered System, Code on demand
+        Richardson Maturity Model Level 0- Define URI, )
+Push and Real time communication HTTP and WebSocket Protocol
+Pull Communication HTTP and AMQP - short polling and Long Polling
+Event Driven Communication with Publish/Subscribe Model
+Asynchronous(Message broker event buses)
+ They are build around business capabilities and independently deployable by fully automated deployment process
+Cloud native architectural approach Single responsibility principal
+componentization via services  - organized around business capabilities
+smart end points and dump pipes  - decentralized governance, data management, design for failure - self healing mechanism
+
+Agility, Innovation, and Agility to TIme-to-market, Flexible scalability - small and seperated code base - Easy deployment
+Technology agnostic, Resillienace, and Fault isolation - retry and circuit breaker pattern
+
+Challenges - more management challenges - complexity - (inter process vrs inter service communication like HTTP, gRPC, AMQP) - network problems and latency
+Chatty API calls - follow asynchronous communication pattern - message broker publish subscribe pattern
+Data Integrity - eventual consistency - transactional operations are always challenging
+Invest in DevOps :Logging and Monitoring :
+Cloud native principles: CI/CD pipeline, monitoring, managed cloud services, sync communications using Messaging and streaming services
+Mongo DB - NoSQL Document Redis - NoSQL Key-value
+Scale CUBE: X-axis(load balancer) : horizontal duplication scale by clonning Y-Axis(Microservices): functional decomposition z-axis: Data partitioning
+Domain Driven Design - Strategic - define business rules and Tactical - implementation - entity, aggregate, value object, repository, domain service
+RESTful API Design for MSs, GraphQL API - flexible structured relational data for MSs,
+gRPC - high performance communication between internal MSs, WebSocket API real-time two way communication
+
+Circuit Breaker design Pattern: to enhance the resilience and fault tolerance of a distributed system
+It is primarily employed to prevent cascading failures when one microservice experiences issues, ensuring that the entire system doesn't become unresponsive due to the failure of a single component.
+1) Closed State -> directs requests to the monitoring MSs. Tracks success and failures (threshold of consecutive failures of requests.
+2) Open State -> Prevents directing requests and returns a predefined fallback response (default value or cached response) and waits for a predefined wait time - timeout period
+3) Half-Open state -> directs limited no of requests and monitors the failures
+
+Rate Limiting: To prevent abuse and ensure fair usage, many Web APIs implement rate limiting, which restricts the number of requests a client can make within a specific time frame.
+
+Security: Security is a critical aspect of Web APIs. Developers must implement measures such as encryption (HTTPS), input validation, and output encoding to protect against common web security vulnerabilities like SQL injection and cross-site scripting (XSS) attacks.
+
+Cross-Origin Resource Sharing (CORS): CORS is a security feature that allows or restricts web applications running at one origin (domain) to make requests to a different origin (domain). It helps control which clients can access the API.
+Thread.yield() current thread is willing to yield its current execution to give other threads of the same or higher priority a chance to run
+"yield" keyword is used to produce a value from the switch expression, and that value is assigned to the dayName variable
+ordinal() method is used to determine that "WEDNESDAY" has an ordinal value of 3.
+
+----------------------------------------------
+Microservice Architecture: It involves structuring an application in the form of a cluster of small, autonomous services modeled
+around a business domain. The functional modules can be deployed independently, are scalable, are aimed at achieving specific business goals,
+and communicate with each other over standard protocols.
+Spring Cloud: In Microservices, the Spring cloud is a system that integrates with external systems.
+Circuit Breakers, CLuster State, Distributed Configuration, Distributed Messaging, Global Locks, Load Balancing, Service Discovery, Service Registration, Service to Service Calls
+Spring Boot: Spring Boot is an open-sourced, Java-based framework that provides its developers with a platform on which they can create stand-alone, production-grade Spring applications.
+spring boot actuator: is a project that provides restful web services to access the current state of an application that is running in production
+Loosely Coupled, Highly Cohesive, Domain Driven Design - Bounded Context DDD breaks large models down into multiple contexts to make them more manageable.
+and explains their relationship explicitly.
+fundamental characteristics of Microservice Design:
+    1) Based on Business Capabilities: Services are divided and organized around business capabilities.
+    2) Products not projects: A product should belong to the team that handles it.
+    3) Essential messaging frameworks: Rely on functional messaging frameworks: Eliminate centralized service buses by embracing the concept of decentralization.
+    4) Decentralized Governance: The development teams are accountable for all aspects of the software they produce.
+    5) Decentralized data management: Microservices allow each service to manage its data separately.
+    6) Automated infrastructure: These systems are complete and can be deployed independently.
+    7) Design for failure: Increase the tolerance for failure of services by focusing on continuous monitoring of the applications.
+PACT is defined as an open-source tool that allows service providers and consumers to test interactions in isolation against contracts that have been made to increase the reliability of microservice integration.
+CDC (Consumer-Driven Contract) basically ensures service communication compatibility by establishing an agreement between consumers and service providers regarding the format of the data exchanged between them.
+
+------------------------------------------
+
+
+
+
+------------------------------------------
+Main components of MS
+Containers, Clustering, and Orchestration
+IaC [Infrastructure as Code Conception]
+Cloud Infrastructure
+API Gateway
+Enterprise Service Bus
+Service Delivery
+
+Tools: wiremock, Docker, Hystix

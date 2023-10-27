@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CoreJavaFundamentals</title>
+</head>
+<body>
+<p>
+    JIT compiler: Just-In-Time and it is used for improving the performance during run time.
+    by compiling parts of byte code having similar functionality at the same time thereby reducing the amount of compilation time for the code to run
+    javac compiler converts .java .class (byte code). these class files are loaded at run time by JVM with the help of interpreter.
+    These files are converted to machine understandable code. When JIT enabled, JVM analyses method calls and compiles them to get more efficient and native code.
+</p>
+<p>
+    1. Heap Memory Allocation:Java objects, including instances of classes, arrays etc, are allocated on the heap memory.
+    2. Method Area (PermGen or Metaspace Java8): JVM stores class metadata, method definitions, and static variables
+    3. Stack Memory Allocation: Each thread in a Java application has its own call stack, which is used to keep track of method calls and local variables
+    4. String Pool: string constant pool -.to optimize memory usage for string literals
+    5. Garbage Collection: The JVM periodically identifies and collects unreferenced objects to free up memory.
+
+    1. Class Loading: load java class (bytecode instructions that JVM can execute) files into memory
+    2. Hierarchical Structure "class loading delegation model." =>
+    a) Bootstrap Class Loader: It is the parent of all other class loaders and is responsible for loading core Java classes from the bootstrap classpath (e.g., rt.jar).
+    b) Extension Class Loader: This class loader loads classes from the extension classpath, typically located in the jre/lib/ext directory.
+    c) Application Class Loader: Also known as the system class loader, it loads classes from the classpath specified when launching the Java application
+    3. Class loading Order: When a class is referenced, follows the above a), b) c) order to load the class, if not found ClassNotFoundException is raised
+
+</p>
+Method References, Lambda expressions,
+Functional interfaces provide target types for lambda expressions and method references
+Each functional interface has single abstract method called the functional method for that functional interface
+Assignment Predicate< String > p = String::isEmpty; method invocation - stream.filter(e -> e.getSIze() > 10), or Cast contexts - stream.map((ToIntFunction) e -> e.getSize())...
+Built-in Java finctional interface : Runnable - run() Comparable -> compareTo() ActionListener -> actionPerformed() Callable call()
+Method References Static Method Reference, Constructor Reference
+Instance Method Ref of a perticular Object, Instance method ref of an arbitrary object of a particular type
+
+<p>
+binary data, character data, input streams & readers, buffers, disk readers
+    try (BufferedReader bufferedReader = new BufferedReader(
+            new FileReader("file.txt"))) {
+        bufferedReader.lines().forEach(System.out::println);
+    }
+    catch (IOException e) {
+        e.printStackTrace();
+    }
+Pattern pattern = Pattern.compile("\\p{javaWhitespace}+");
+</p>
+
+<p>
+    Primitive types don't have intrinsic locks but Objects can have
+    https://www.interviewbit.com/technical-interview-questions/#popular-guides
+    Thread:  lightweight and smallest unit of processing that can be managed independently by a scheduler.
+    Process: refers to a program that is in execution i.e., an active program PCB (Process Control Block)
+    synchronized (ClassLevelLockExample.class) Class Lock, Object Lock synchronized (this)
+    Runnable Interface:Java.lang.: run() It does not return any result and therefore, cannot throw a checked exception.
+    Callable Interface:java.util.concurrent - call() supports additional features like generics, enum, static imports, variable argument method
+    Exceptions: java.lang.IllegalThreadStateException, InterruptedException, ExecutionException
+    The method that wants to override a parent class method can not throw a higher Exception than the overridden method
+    This means that if the overridden method is throwing IOException, then the overriding child class method can only throw IOException or its sub-classes. This overriding method can not throw a higher Exception than the original or overridden method
+    UnsupportedOperationException -- Collections.unmodifiableList(arraylist)
+    List<String> synchronized_list =  Collections.synchronizedList(new ArrayList<String>());
+    CopyOnWriteArrayList<T> list_name = new CopyOnWriteArrayList</T>();
+    intrinsic lock
+    ReentrantLock
+    race condition
+    Thread Starvation
+    FairLocks and Live Locks Slipped Condition
+    atomic action, compareAndSet()
+    ShareResource
+    volatile public volatile int counter, atomic classes : boolean, integer, integer array, long, long array, obj ref, double with set() and get(), compareAndSet() expectedValue and new Value
+    private AtomicInteger counter = new AtomicInteger(0); counter.incrementAndGet()
+
+    ConcurrentHashMap: Thread -safe, store data using multiple buckets to allow concurrency.
+    Hashtable: Thread-safe, just locks the entire map while doing iteration
+
+    Why wait(), notify(), and notifyAll() methods are present in Object class?
+    If wait() and notify() were on the Thread instead then each thread would have to know the status of every other thread and there is no way to know thread1 that thread2 was waiting for any resource to access.
+    Hence, notify, wait, notifyAll methods are defined in object class in Java. The threads have no specific knowledge of each other and they can run asynchronously.
+    In Java, we wait() on a particular instance of an Object – a monitor assigned to that object to be precise.
+    the object itself is the entity that is shared between threads which allows them to communicate with each other.
+    Thread LifeCycle
+    New – When the instance of the thread is created and the start() method has not been invoked
+    Runnable – 1) Once the start() method is invoked, before the run() method is called by JVM 2) from wait(), sleep() states
+    Running – When the run() method has been invoked and the thread starts its execution
+    Non-Runnable (Blocked (Issue I/O request); Waiting join() or wait() -> notify() / notifyAll() ; timed_waiting sleep(sleep_interval))
+    Terminated – Once the run() method execution is completed or stop()
+    instance - NEW start() RUNNABLE, run()RUNNING, yield()(RUNNABLE), join()/wait()WAITING, notify()/notifyAll() RUNNABLE
+    Issues DB Read/I/O Request BLOCKED - request completion RUNNABLE sleep() TIMED_WAITING - RUNNABLE
+    stop() after run() executes - TERMINATED
+    join(): used to pause the execution of a current thread unless and until the specified thread on which join is called is dead or completed
+    thread pool: collection of pre-initialized or worker threads at the start-up that can be used to execute tasks and put back in the pool when completed.
+    lock interface? Why is it better to use a lock interface rather than a synchronized block.? Lock() and Unlock() can be called in different methods.
+
+    Executor interface and ExecutorService interface:
+    Context switching: switching of CPU from one thread or process to another one. In context switching, the state of thread or process is stored so that the execution of the thread can be resumed later if required.
+    CyclicBarrier: It is a tool to synchronize threads processing using some algorithm.  It enables a set of threads to wait for each other till they reach a common execution point or common barrier points, and then let them further continue execution. One can reuse the same CyclicBarrier even if the barrier is broken by setting it.
+    CountDownLatch: It is a tool that enables main threads to wait until mandatory operations are performed and completed by other threads.  One cannot reuse the same CountDownLatch once the count reaches 0.
+    inter-thread communication: wait, notify, notifyAll
+    Thread Scheduler: It is a component of JVM that is used to decide which thread will execute next if multiple threads are waiting to get the chance of execution.
+    Time Slicing: It is especially used to divide CPU time and allocate them to active threads. In this, each thread will get a predefined slice of time to execute.
+    shutdown hook: is a thread that is invoked implicitly before JVM shuts down to do resource cleanup or save application state JVM
+    Busy Spinning, Busy waiting: one thread waits for some condition to happen, without calling wait or sleep methods and releasing the CPU. preserve CPU caches and avoid the cost of rebuilding cache
+    ThreadLocal variable by ThreadLocal class. These variables are only allowed to be read and written by the same thread. to avoid race condition.
+    semaphore:  java.util.concurrent   can be used to send signals between threads to avoid missed signals or to guard critical sections.
+    Synchronization is basically a process in java that enables a simple strategy for avoiding thread interference and memory consistency errors
+    Livelock: the state of threads changes between one another without making any progress. These are not blocked.
+    BlockingQueue String queue=new ArrayBlockingQueue (5); QUEUE between Producer and Consumer ; (Supplier, Consumer, predicate, function)
+    'transient' String ssn; keyword is used in the context of serialization to indicate that a field of an object should not be serialized.
+    'var' to declare local variables with an inferred type. the Java compiler determines the type based on the assigned value.
+    Volatile: Visibility->it ensures that changes made to the variable by one thread are visible to all other threads immediately
+    Atomicity: keyword guarantees atomicity for read and write operations on the variable.
+    No Caching:  not cached by threads or stored in thread-local memory. always read from and written to the main memory
+    Use Cases: volatile is typically used for variables that are shared among multiple threads
+    volatile boolean flag = false;
+    Vector, ArrayList - Vector is Thread-safe. both implemetns List interface and index based
+    ConcurrentHashMap:  is a thread-safe implementation of the Map interface - offers fine-grained locking.
+    achieves thread safety by dividing the map into segments (buckets) and allowing concurrent updates within different segments
+</p>
+<p>
+    functional programming in Java 15
+    Lambda Expressions: Lambda expressions allow you to define anonymous functions concisely. They enable you to treat functionality as data, making it easier to pass behavior as arguments to methods. Lambda expressions are particularly useful in functional-style programming and are commonly used with streams.
+    Functional Interfaces: have exactly one abstract method and are used as the basis for lambda expressions. Function R apply(T t), Consumer void accept(T t), Supplier T get(), Predicate boolean test(obj), BiFunction R apply(T t, U u), BinaryOperator, UnaryOperator
+    Streams API: for processing sequences of elements in a functional-style manner. A stream is an iterator whose function is to accept a set of actions and apply them to each of the elements it contains. A stream represents an object sequence from a collection or other source that supports aggregate operations. Unlike collections, iteration logic implements inside the stream.
+    Also, streams are inherently lazily loaded and processed, unlike collections
+    Default Methods in Interfaces: The default method involves an implementation.
+    Immutability and Immutability Patterns: While Java doesn't enforce immutability, it provides features like final variables and the var keyword (introduced in Java 10) to indicate immutability.
+    Optional is a new container class defined in the java.util package. Optional’s chief benefit is avoiding null checks, and there are no longer any “NullPointerException” results at run-time
+    StringJoiner class: Java 8 StringJoiner class constructs a sequence of characters separated by a delimiter so that users can create a string by passing delimiters such as hyphens and commas
+    Nashorn is the new JavaScript processing engine. compliance with ECMA normalized JavaScript specifications and faster run-time performance
+    Stream Pipelining: chaining Terminal and intermediate. When each intermediate operation runs, it returns an instance of the stream.
+    random.ints().limit(10).forEach(System.out::println);
+    Spliterator: Stream API - blend of “splittable” and “iterator” - iterate streams in a parallel or sequential order by internal iteration
+</p>
+
+<p>
+    Collection: interface extends iterable -> Collection -> Set SortedSet NavigableSet, List, Queue Deque
+    Collections extends Object
+    Comparable: compareTo() - Collections.sort(List) - java.lang package - A single sorting sequence - single attribute such as id, name, or price
+    Comparator: compare() - Collections.sort(List, Comparator) - java.util package - Multiple sorting sequences are available
+    ... variable args
+    thread-safe singleton patterns:
+    BlockingQueue Unbounded Queue Bounded Queue BlockingQueue bounded_queue = new LinkedBlockingDeque(10);
+    ConcurrentHashMap, Counting Semaphore, CopyOnWriteArrayList
+    fail-fast and fail-safe iterators:
+    hashCode-equals contract:
+    1) If two objects are equal, then the hashCode method should produce the same result for both objects.
+    2) To ensure this, we have to override the hashCode() method whenever we override the equals() method
+
+    classpath variables: specific to the Java executables and are used for locating the class files
+    path variable: present in the operating system and is used for locating the system executables
+    null is a value that can be assigned to any kind of object reference type in Java. It is not an object in Java
+    java.io.serializable interface implement, donot serialize static members, check transient
+    System.out.println(0.1*2 == 0.2);
+    in Java, only the floating-point numbers that are powers of 2 are represented accurately by the binary representation.
+</p>
+
+</body>
+</html>
